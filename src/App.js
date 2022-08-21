@@ -48,9 +48,11 @@ function App() {
 
   // Adds movie into favourites
   const addFavouriteMovie = (movie) => {
-    const newFavouriteList = [...favourites, movie];
-    setFavourites(newFavouriteList);
-    saveToLocalStorage(newFavouriteList);
+    if(movie != null){
+      const newFavouriteList = [...favourites, movie];
+      setFavourites(newFavouriteList);
+      saveToLocalStorage(newFavouriteList);
+    }
   }
   // Removes movie from favourites
   const removeFavouriteMovie = (movie) => {
