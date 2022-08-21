@@ -19,7 +19,7 @@ function App() {
   // Requests movies for url of the api
   const getMovieRequest = async (searchValue) => {
     // `` is used to declare template string sp ${} can be used to insert javascript in between the string
-    const url = `http://www.omdbapi.com/?s=${searchValue}&apikey=4d5183e5`;
+    const url = `https://www.omdbapi.com/?s=${searchValue}&apikey=4d5183e5`;
 
     // makes a request to the url
     const response = await fetch(url);
