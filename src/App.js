@@ -46,17 +46,27 @@ function App() {
     localStorage.setItem('react-app-favourite-movies', JSON.stringify(items))
   }
 
+
+  const uniqueid = [];
+
   // Adds movie into favourites
   const addFavouriteMovie = (movie) => {
-    if(movie != null && favourites != null && !(movie in favourites)){
-      const newFavouriteList = [...favourites, movie];
-      setFavourites(newFavouriteList);
-      saveToLocalStorage(newFavouriteList);
-    }
-  }
+      const newFavouriteList = [...favourites, movie];      
+      const uniqueMovies = newFavouriteList.filter((m) => {
+        const isduplicate = uniqueid.includes(m.imdbID)
+        if(!isduplicate){
+          uniqueid.push(m.imdbID);
+          return true;
+        }
+        return false;
+      
+    })
+      setFavourites(uniqueMovies);
+      saveToLocalStorage(uniqueMovies);
+}
   // Removes movie from favourites
   const removeFavouriteMovie = (movie) => {
-    const newFavouriteList = favourites.filter((favourite) => favourite.imdbID != movie.imdbID);
+    const newFavouriteList = favourites.filter((favourite) => favourite.imdbID !== movie.imdbID);
     setFavourites(newFavouriteList);
     saveToLocalStorage(newFavouriteList);
   }
